@@ -12,7 +12,7 @@ tree = html.fromstring(content)
 
 elements = []
 
-for element in tree.xpath('//*'):
+for element in tree.xpath('//*[not(self::script)]'):
 
     name = element.tag
     text = element.text
