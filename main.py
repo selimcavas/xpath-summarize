@@ -14,13 +14,13 @@ elements = []
 
 for element in tree.xpath('//*[not(self::script)]'):
 
-    name = element.tag
+    tag = element.tag
     text = element.text
     xpath = tree.getroottree().getpath(element)
     clickable = element.tag in ['a', 'button', 'input']
 
     elements.append({
-        'name': name,
+        'tag': tag,
         'text': text,
         'xpath': xpath,
         'clickable': clickable,
@@ -33,7 +33,7 @@ with open('elements.json', 'w') as f:
 
 with open('elements.csv', 'w', newline='') as f:
     writer = csv.DictWriter(
-        f, fieldnames=['name', 'text', 'xpath', 'clickable'])
+        f, fieldnames=['tag', 'text', 'xpath', 'clickable'])
     writer.writeheader()
     for element in elements:
         writer.writerow(element)
